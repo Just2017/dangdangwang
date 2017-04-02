@@ -64,10 +64,6 @@ count=0
 for _gd in range(len(bdata_url)):
     for _bdata in range(len(bdata_url_name[_gd])):
         page = bio.getPage(bdata_url_url[_gd][_bdata])           #获取页码数
-        if _bdata==len(bdata_url_name[_gd])-1:
-            book.save(bdata_gd[_gd].replace("/","-")+".xls")
-            book = xlwt.Workbook(encoding="utf-8")
-            print("--------已完成"+bdata_gd[_gd])
         #
         sheetname=bdata_url_name[_gd][_bdata].replace("/", "-")
         try:
@@ -91,6 +87,11 @@ for _gd in range(len(bdata_url)):
             except:continue
         print("已写入"+str(count)+"本书")
         print(sheetname+"写入完成...\r\n")
+        
+        if _bdata==len(bdata_url_name[_gd])-1:
+            book.save(bdata_gd[_gd].replace("/","-")+".xls")
+            book = xlwt.Workbook(encoding="utf-8")
+            print("--------已完成"+bdata_gd[_gd])
 print("写入完成，共计"+str(count)+"本书")
 
 
